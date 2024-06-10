@@ -30,7 +30,7 @@ function GenVid(mainprops){
             <a class="box" href={`https://www.youtube.com/watch?v=${props.name.slice(2)}`}>
             <i class="fas fa-play"></i>
             <iframe width="300" height="200" src ={`https://www.youtube.com/embed/${props.name.slice(2)}`}></iframe>
-            <h3 >{props.name.replace("=","")}</h3>
+            <h3 >Data Types in Python :{props.name.replace("=","")}</h3>
             <h3></h3>
          </a>
          </div>

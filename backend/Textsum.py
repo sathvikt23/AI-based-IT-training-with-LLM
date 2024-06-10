@@ -8,8 +8,8 @@ google.generativeai  //pip install google-generativeai
 if anyone is using conda , intall it according to its requirements 
 """
 import urllib.request
-import spacy 
-from spacy .lang.en.stop_words import STOP_WORDS
+#import spacy 
+#from spacy .lang.en.stop_words import STOP_WORDS
 from string import punctuation
 from heapq import nlargest
 from youtube_transcript_api import YouTubeTranscriptApi as yta 
@@ -17,11 +17,11 @@ import google.generativeai as palm
 import google.generativeai as genai
 import re 
 import ai21
-from googleapiclient.discovery import build
+
 
 class all_in_one():
         #def getsentence(data):#Give data in the string format 
-        def getsentence(data,lines):#Give data in the string format and no of requried lines 
+        """  def getsentence(data,lines):#Give data in the string format and no of requried lines 
                 #lines=100
                 stopwords=list(STOP_WORDS)
                 nlp=spacy.load('en_core_web_sm')
@@ -54,11 +54,11 @@ class all_in_one():
                 final=""
                 for i in summarized:
                     final+=str(i)
-                return final 
+                return final """
         def transcribe(link):#Here pass the link only , copy it from the url 
                 ids=link.split("=")
                 vid_id=ids[1]
-                data=yta.get_transcript(vid_id)
+                data=yta.get_transcript(vid_id,languages=['en'])
                 transcript=''
                 for value in data:
                     for key,val in value.items():
@@ -69,7 +69,7 @@ class all_in_one():
                 finaldata=" ".join(l)
                 return finaldata
         def askai(data):#basically u can ask anything , data should be given in sting format
-                apikey="AIzaSyBLDyo6bqBMcZFRIpNypqmPYE5hadRe4iM"
+                apikey="palm_api_key"
                 palm.configure(api_key=apikey)
                 modelid='models/text-bison-001'
                 toBeAsked=data#to be given in string 
@@ -90,14 +90,14 @@ class all_in_one():
 
                 return completion.result
         def askai21(content , doubt ):
-             ai21.api_key = 'oxDgMEp78PiFLg3HjY5OmRGvRkPV3dBa'
+             ai21.api_key = 'ai21_api_key'
              a=ai21.Answer.execute(context=content, question=doubt)
              data={}
              data["answer"]=a.answer
              data["valid"]=a.answerInContext
              return data
         def askgem(question):
-                apikey="AIzaSyCHAf6umJfrfEoyd4u_quG6BIKjGOFqud4"
+                apikey="gem_api_key"
                 genai.configure(api_key=apikey)
                 model = genai.GenerativeModel('gemini-pro')
                 generation_config = {
@@ -131,3 +131,4 @@ class all_in_one():
             search2=list(set(video_ids[0:4])) 
             return list(set(search1+search2))
         
+

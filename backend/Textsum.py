@@ -69,7 +69,7 @@ class all_in_one():
                 finaldata=" ".join(l)
                 return finaldata
         def askai(data):#basically u can ask anything , data should be given in sting format
-                apikey="palm_api_key"
+                apikey="palm_api"
                 palm.configure(api_key=apikey)
                 modelid='models/text-bison-001'
                 toBeAsked=data#to be given in string 
